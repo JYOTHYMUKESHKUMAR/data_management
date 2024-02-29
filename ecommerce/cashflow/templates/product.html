@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block metadescription %}
+    {{ product.description|truncatewords:120 }}
+{% endblock %}
+
+{% block title %}
+    {{ product.name }} - ACF store
+{% endblock %}
+
+{% block content %}
+    <div>
+        <div>
+            <p>
+                <a class="btn btn-info-sm" href="{% url 'cashflow:allProdcat' %}">Home</a>
+                <a class="btn btn-info-sm" href="{{ product.category.get_url }}">{{ product.category }}</a>
+                | {{ product.name }}
+            </p>
+        </div>
+    </div>
+    <br>
+
+    <div>
+        <div>
+            <div>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.price }}</p>
+        <p>{{ product.description }}</p>
+        {% if product.stock <= 0 %}
+            <p><b>Out Of Stock</b></p>
+        {% else %}
+            <a href="#">Add to Cart</a>
+        {% endif %}
+    </div>
+{% endblock %}

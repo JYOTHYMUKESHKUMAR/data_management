@@ -1,0 +1,52 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+  <div class="submit-row">
+    <a href="{% url 'admin:cashflow_summary_changelist' %}" class="button">Back to Summary</a>
+    {% if show_viewdetails %}
+      <a href="{{ viewdetails_url }}" class="button">View Details</a>
+    {% endif %}
+  </div>
+  
+  <h1>Transaction Details for {{ selected_date }}</h1>
+
+  <h2>Cash In Details:</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Income Source</th>
+        <th>Cash In</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cash_in_detail in cash_in_details %}
+        <tr>
+          <td>{{ cash_in_detail.income_source }}</td>
+          <td>{{ cash_in_detail.cash_in }}</td>
+          <td>{{ cash_in_detail.status }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Cash Out Details:</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Expense Source</th>
+        <th>Cash Out</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cash_out_detail in cash_out_details %}
+        <tr>
+          <td>{{ cash_out_detail.expense_source }}</td>
+          <td>{{ cash_out_detail.cash_out }}</td>
+          <td>{{ cash_out_detail.status }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

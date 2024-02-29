@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+
+{% block metadescription %}
+    {% if category %}
+        {{ category.description|truncatewords:120 }}
+    {% else %}
+        Welcome to ACF store
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{ category.name }} - ACF store
+    {% else %}
+        ACF DATA MANAGEMENT
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if category %}
+        <div>
+            <div class="row my_class">
+                <div class ="mx-auto">
+                <p><a href="{% url 'shopflee:allProdcat' %}">Our Product Collections</a></p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+        <div class "mx_auto">
+            {% if category %}
+
+            <img class="my_image" src="{{ category.image.url }}" width="100%" alt="{{ category.name }}">
+        </div>
+        <br>
+        <div>
+            <h1 class="text-center">{{ category.name }}</h1>
+            <p class="text-justify">{{ category.description }}</p>
+        </div>
+    {% else %}
+    
+
+        <div>
+            <img src="{% static 'img/banner.png' %}" alt="our Products" style="max-width: 100%; height: auto;">
+        </div>
+        <br>
+        <div>
+            <h1>Choose ACF for the quality construction materials</h1>
+            <p>The Alazizya Chemicals Factory, Qatar (ACF) was founded in 2017 in Doha, Qatar. The Company came into existence on the need for high quality construction chemicals which have become one of the important components of chemical industry.ACFs’ motive to enter the construction materials market was to always provide high-quality materials to enhance the quality and life span of the buildings and enrich the structures. Moreover, Al Azaziya Chemical Factory seeks to contribute to infrastructure development by providing chemical construction materials that increase its life, impart additional protection and environmental hazards.</p>
+        </div>
+    {% endif %}
+    <div>
+        <div>
+            {% for product in products %}
+                <div>
+                    <div>
+                        <a href="{{product.get_url}}"><img src="{{product.image.url}}" alt="{{product.name}}" width="30%"></a>
+                    </div>
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.price}}</p>
+                    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock %}

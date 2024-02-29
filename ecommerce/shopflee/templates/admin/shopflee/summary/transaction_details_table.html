@@ -1,0 +1,36 @@
+<!-- admin/your_app_name/transaction_details_table.html -->
+<div>
+    <h2>Transaction Details - Date: {{ selected_date }}</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Income Source</th>
+                <th>Expense Source</th>
+                <th>Cash In</th>
+                <th>Cash Out</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cash_in_record in cash_in_details %}
+                <tr>
+                    <td>{{ cash_in_record.income_source }}</td>
+                    <td></td>
+                    <td>{{ cash_in_record.cash_in }}</td>
+                    <td></td>
+                    <td>{{ cash_in_record.status }}</td>
+                </tr>
+            {% endfor %}
+
+            {% for cash_out_record in cash_out_details %}
+                <tr>
+                    <td></td>
+                    <td>{{ cash_out_record.expense_source }}</td>
+                    <td></td>
+                    <td>{{ cash_out_record.cash_out }}</td>
+                    <td>{{ cash_out_record.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

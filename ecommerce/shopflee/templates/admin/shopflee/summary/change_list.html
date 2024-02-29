@@ -1,0 +1,25 @@
+{% extends "admin/change_list.html" %}
+
+{% block result_list %}
+    <div class="dashboard-summary">
+        <h2>Dashboard Summary</h2>
+        <table>
+            <tr>
+                <th>Total Cash In</th>
+                <th>Total Cash Out</th>
+                <th>Total Actual Cash In</th>
+                <th>Total Actual Cash Out</th>
+                <th>Current Balance</th>
+            </tr>
+            <tr>
+                <td>{{ total_cash_in|floatformat:2 }}</td>
+                <td>{{ total_cash_out|floatformat:2 }}</td>
+                <td>{{ total_actual_cash_in|floatformat:2 }}</td>
+                <td>{{ total_actual_cash_out|floatformat:2 }}</td>
+                <td>{{ current_balance|floatformat:2 }}</td>
+            </tr>
+        </table>
+    </div>
+
+    {{ block.super }}
+{% endblock %}
